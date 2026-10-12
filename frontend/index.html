@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دليل الجامعة الأردنية فرع العقبة الذكي | UJ Aqaba Assistant</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Markazi+Text:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- Header -->
+    <header class="navbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <img src="assets/uj_logo.png" alt="شعار الجامعة الأردنية" class="brand-logo-img">
+        </div>
+        <div class="brand-text">
+          <p id="nav-title">الجامعة الأردنية — فرع العقبة</p>
+          <p id="nav-subtitle" class="muted">دليل الطالب الأكاديمي المباشر</p>
+        </div>
+      </div>
+
+      <div class="nav-controls">
+        <button id="theme-btn" class="ctrl" title="تبديل المظهر" aria-label="تبديل المظهر">
+          <svg id="theme-icon-sun" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="4.5"></circle>
+            <path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8L6 18M18 6l1.8-1.8"/>
+          </svg>
+          <svg id="theme-icon-moon" class="icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z"></path>
+          </svg>
+        </button>
+        <button id="lang-btn" class="ctrl ctrl-lang">
+          <span id="lang-label">English</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-copy">
+          <h1 id="hero-title">
+            <span class="hero-line">إجابة موثّقة،</span>
+            <span class="hero-line hero-underline">من مصدر الجامعة الرسمي</span>
+          </h1>
+          <p id="hero-desc" class="hero-desc">
+            اسأل عن الكليات، أعضاء الهيئة التدريسية، التقويم الأكاديمي، والمواعيد — والدليل يستخرج الجواب مباشرة من صفحات بوابة الجامعة الأردنية فرع العقبة.
+          </p>
+
+          <div class="hero-stats">
+            <div class="stat"><strong id="stat1-n">٦</strong><span id="stat1-l">كليات مغطّاة</span></div>
+            <div class="stat"><strong id="stat2-n">AR / EN</strong><span id="stat2-l">دعم كامل بلغتين</span></div>
+            <div class="stat"><strong id="stat3-n">مباشر</strong><span id="stat3-l">من البوابة الرسمية</span></div>
+          </div>
+
+          <a href="#console" class="btn-primary" id="hero-cta">
+            <span>ابدأ السؤال</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </a>
+        </div>
+
+        <div class="hero-emblem" aria-hidden="true">
+          <img src="assets/uj_building.jpg" alt="صورة الجامعة الأردنية فرع العقبة" class="hero-building-img">
+        </div>
+      </section>
+
+      <!-- Quick topics -->
+      <section class="topics">
+        <h2 id="topics-title" class="section-heading">استكشف بسرعة</h2>
+        <div class="topic-grid">
+
+          <button class="topic-card" data-prompt="من عميد كلية نظم وتكنولوجيا المعلومات؟">
+            <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg>
+            <span>عمداء الكليات وجهات التواصل</span>
+          </button>
+
+          <button class="topic-card" data-prompt="ما هو التقويم الأكاديمي للفصل الحالي ومواعيد السحب والإضافة؟">
+            <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>
+            <span>التقويم الأكاديمي والسحب والإضافة</span>
+          </button>
+
+          <button class="topic-card" data-prompt="أين يقع مكتب القبول والتسجيل وساعات المراجعة؟">
+            <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
+            <span>القبول والتسجيل وساعات المراجعة</span>
+          </button>
+
+          <button class="topic-card" data-prompt="كيف يمكن تقديم طلب شكوى أو اقتراح إلكتروني؟">
+            <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v10H9l-5 4V5z"/></svg>
+            <span>تقديم شكوى أو اقتراح</span>
+          </button>
+
+          <button class="topic-card" data-prompt="ما هي روابط بوابة التسجيل الذاتي RegApp وبوابة التعليم الإلكتروني؟">
+            <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9.5 14.5l5-5M8.5 8.5H6a3.5 3.5 0 0 0 0 7h2.5M15.5 15.5H18a3.5 3.5 0 0 0 0-7h-2.5"/></svg>
+            <span>بوابة RegApp والتعليم الإلكتروني</span>
+          </button>
+
+        </div>
+      </section>
+
+      <!-- Chat console -->
+      <section class="console" id="console">
+        <div class="console-head">
+          <span class="console-dot"></span>
+          <span id="console-title">المرشد الأكاديمي — متصل الآن</span>
+        </div>
+
+        <div id="chat-stream" class="chat-stream">
+          <div id="empty-state" class="empty-state">
+            <h3 id="empty-title">أهلاً بك في دليل الجامعة الأردنية الأكاديمي</h3>
+            <p id="empty-desc">اختر أحد المواضيع أعلاه، أو اكتب سؤالك للحصول على إجابة موثقة من صفحات بوابة الجامعة الأردنية فرع العقبة.</p>
+          </div>
+        </div>
+
+        <div class="input-dock">
+          <textarea id="user-input" rows="1" placeholder="اكتب سؤالك الأكاديمي..."></textarea>
+          <button id="send-btn" title="إرسال" aria-label="إرسال">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <div class="footer-brand">
+        <p id="footer-title">الجامعة الأردنية — فرع العقبة</p>
+        <p class="muted">© 2026 جميع الحقوق محفوظة</p>
+      </div>
+      <p class="creator">إعداد وتصميم: <strong>شهد الربايعة</strong></p>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
