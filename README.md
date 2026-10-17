@@ -196,3 +196,13 @@ The project strictly follows institutional governance detailed in [PROJECT_RULES
 ## 📄 License
 
 Developed for the **University of Jordan – Aqaba Branch**. All institutional assets, logos, and marks remain property of the University of Jordan.
+
+
+## 📬 Contact
+
+**NAME**
+
+*   LinkedIn: https://www.linkedin.com/in/shahd-al-rabaya-58b8882b1/
+*   GitHub: https://github.com/princedarkness369/
+*   Email: Shahdfalrabaya@gmail.com
+
