@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       inputPlaceholder: "اكتب سؤالك الأكاديمي...",
       langBtnLabel: "English",
       studentLabel: "الطالب",
-      botLabel: "دليل الجامعة الأردنية",
+      botLabel: "رفيق — المرشد الأكاديمي",
       citationText: "المصدر الرسمي",
       errorMsg: "عذراً، حدث خطأ في الاتصال بالخادم الرئيسي. يرجى المحاولة لاحقاً.",
       unavailableMsg: "عذراً، هذه المعلومة غير متوفرة حالياً على صفحات البوابة الرسمية.",
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
       inputPlaceholder: "Ask your academic question...",
       langBtnLabel: "العربية",
       studentLabel: "Student",
-      botLabel: "UJ Guide",
+      botLabel: "Rafeq — Academic Guide",
       citationText: "Official source",
       errorMsg: "Sorry, a connection error occurred. Please try again later.",
       unavailableMsg: "This information isn't available on the official portal yet.",
@@ -172,6 +172,74 @@ document.addEventListener("DOMContentLoaded", () => {
       if (promptText) {
         document.getElementById("console").scrollIntoView({ behavior: "smooth", block: "start" });
         handleSend(promptText);
+      }
+    });
+  });
+
+  // ===== Academic Calendar Interactive Controls =====
+  const calFilterTabs = document.querySelectorAll(".filter-tab");
+  const calSearchInput = document.getElementById("cal-search-input");
+  const calTableRows = document.querySelectorAll("#calendar-table-body tr");
+  const milestoneCards = document.querySelectorAll(".milestone-card");
+  const calAskBtns = document.querySelectorAll(".cal-ask-btn");
+
+  let currentCategory = "all";
+  let currentSearchQuery = "";
+
+  function filterCalendarRows() {
+    const query = currentSearchQuery.toLowerCase().trim();
+    calTableRows.forEach(row => {
+      const rowCat = row.getAttribute("data-cat");
+      const rowText = row.innerText.toLowerCase();
+
+      const matchesCat = (currentCategory === "all" || rowCat === currentCategory);
+      const matchesSearch = !query || rowText.includes(query);
+
+      if (matchesCat && matchesSearch) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  }
+
+  // Filter tabs
+  calFilterTabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      calFilterTabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      currentCategory = tab.getAttribute("data-category") || "all";
+      filterCalendarRows();
+    });
+  });
+
+  // Live search
+  if (calSearchInput) {
+    calSearchInput.addEventListener("input", (e) => {
+      currentSearchQuery = e.target.value;
+      filterCalendarRows();
+    });
+  }
+
+  // Milestone cards click to ask
+  milestoneCards.forEach(card => {
+    card.addEventListener("click", () => {
+      const prompt = card.getAttribute("data-prompt");
+      if (prompt) {
+        document.getElementById("console").scrollIntoView({ behavior: "smooth", block: "start" });
+        handleSend(prompt);
+      }
+    });
+  });
+
+  // Calendar Ask buttons
+  calAskBtns.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const prompt = btn.getAttribute("data-prompt");
+      if (prompt) {
+        document.getElementById("console").scrollIntoView({ behavior: "smooth", block: "start" });
+        handleSend(prompt);
       }
     });
   });

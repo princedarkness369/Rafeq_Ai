@@ -1,15 +1,41 @@
 import os
+from pathlib import Path
 from typing import List
 from pydantic_settings import BaseSettings
+
+# Robust .env discovery (looks in backend/ directory and current working directory)
+BASE_DIR = Path(__file__).resolve().parent.parent
+env_files_to_check = [BASE_DIR / ".env", Path(".env"), BASE_DIR.parent / ".env"]
+
+def _load_env_file(filepath: Path):
+    if not filepath.is_file():
+        return
+    try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    k, v = line.split("=", 1)
+                    k = k.strip()
+                    v = v.strip().strip("'\"")
+                    if k and k not in os.environ:
+                        os.environ[k] = v
+    except Exception:
+        pass
+
+for env_f in env_files_to_check:
+    _load_env_file(env_f)
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "دليل الطالب الأكاديمي الذكي - الجامعة الأردنية فرع العقبة"
     VERSION: str = "2.0.0"
     
-    GEMINI_API_KEY: str = ""
-    MONGO_URI: str = "mongodb://localhost:27017"
-    MONGO_DB_NAME: str = "uj_academic_assistant"
-    CHROMA_PERSIST_DIR: str = "./chroma_db"
+    GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
+    GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
+    USE_SEARCH_GROUNDING: bool = True
+    MONGO_URI: str = os.getenv("MONGO_URI", "mongodb://localhost:27017")
+    MONGO_DB_NAME: str = os.getenv("MONGO_DB_NAME", "uj_academic_assistant")
+    CHROMA_PERSIST_DIR: str = os.getenv("CHROMA_PERSIST_DIR", "./chroma_db")
     
     # Target University of Jordan & Aqaba Branch Portals
     UNIVERSITY_BASE_URL: str = "https://aqaba.ju.edu.jo/ar/arabic/Home.aspx"

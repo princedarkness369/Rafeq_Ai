@@ -62,10 +62,15 @@
             <div class="stat"><strong id="stat3-n">مباشر</strong><span id="stat3-l">من البوابة الرسمية</span></div>
           </div>
 
-          <a href="#console" class="btn-primary" id="hero-cta">
-            <span>ابدأ السؤال</span>
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          </a>
+          <div class="hero-actions">
+            <a href="#console" class="btn-primary" id="hero-cta">
+              <span>ابدأ السؤال</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </a>
+            <a href="#academic-calendar" class="btn-secondary" id="hero-calendar-cta">
+              <span>📅 التقويم الجامعي 2026/2027</span>
+            </a>
+          </div>
         </div>
 
         <div class="hero-emblem" aria-hidden="true">
@@ -103,6 +108,350 @@
             <span>بوابة RegApp والتعليم الإلكتروني</span>
           </button>
 
+        </div>
+      </section>
+
+      <!-- Academic Calendar Section (التقويم الجامعي المعتمد 2026/2027) -->
+      <section class="calendar-section" id="academic-calendar">
+        <div class="calendar-head-banner">
+          <div class="calendar-badge-tag">
+            <span class="badge-dot"></span>
+            التقويم الجامعي المعتمد 2026 / 2027
+          </div>
+          <h2 class="calendar-main-title">مواعيد وتقويم الجامعة الأردنية — فرع العقبة</h2>
+          <p class="calendar-desc">المواعيد الرسمية المعتمدة الصادرة عن الجامعة ومجلس اتحاد الطلبة للفصل الأول: السحب والإضافة، الامتحانات، والإجازات.</p>
+        </div>
+
+        <!-- Milestones Hero Cards -->
+        <div class="milestones-grid">
+          <div class="milestone-card active-card" data-prompt="متى موعد فترة السحب والإضافة للفصل الحالي؟">
+            <div class="milestone-pill tag-reg">سحب وإضافة</div>
+            <div class="milestone-icon-wrap">🔄</div>
+            <h3 class="milestone-title">فترة السحب والإضافة</h3>
+            <p class="milestone-date">4 — 8 تشرين الأول 2026</p>
+            <p class="milestone-days">من الأحد إلى الخميس</p>
+            <button class="milestone-ask-btn">اسأل رفيق 💬</button>
+          </div>
+
+          <div class="milestone-card" data-prompt="متى يبدأ التدريس في الفصل الأول؟">
+            <div class="milestone-pill tag-academic">بدء التدريس</div>
+            <div class="milestone-icon-wrap">📚</div>
+            <h3 class="milestone-title">بدء التدريس في الفصل الأول</h3>
+            <p class="milestone-date">11 تشرين الأول 2026</p>
+            <p class="milestone-days">يوم الأحد</p>
+            <button class="milestone-ask-btn">اسأل رفيق 💬</button>
+          </div>
+
+          <div class="milestone-card" data-prompt="متى امتحانات منتصف الفصل الأول الميد؟">
+            <div class="milestone-pill tag-exam">امتحانات الميد</div>
+            <div class="milestone-icon-wrap">📝</div>
+            <h3 class="milestone-title">امتحانات منتصف الفصل الأول</h3>
+            <p class="milestone-date">29 تشرين الثاني — 10 كانون الأول 2026</p>
+            <p class="milestone-days">من الأحد إلى الخميس</p>
+            <button class="milestone-ask-btn">اسأل رفيق 💬</button>
+          </div>
+
+          <div class="milestone-card" data-prompt="متى الامتحانات النهائية للفصل الأول؟">
+            <div class="milestone-pill tag-exam">الامتحانات النهائية</div>
+            <div class="milestone-icon-wrap">🎓</div>
+            <h3 class="milestone-title">الامتحانات النهائية للفصل الأول</h3>
+            <p class="milestone-date">17 — 28 كانون الثاني 2027</p>
+            <p class="milestone-days">من الأحد إلى الخميس</p>
+            <button class="milestone-ask-btn">اسأل رفيق 💬</button>
+          </div>
+
+          <div class="milestone-card" data-prompt="متى إجازة ما بين الفصلين للطلبة؟">
+            <div class="milestone-pill tag-holiday">عطلة رسمية</div>
+            <div class="milestone-icon-wrap">🌴</div>
+            <h3 class="milestone-title">إجازة ما بين الفصلين</h3>
+            <p class="milestone-date">31 كانون الثاني — 11 شباط 2027</p>
+            <p class="milestone-days">من الأحد إلى الخميس</p>
+            <button class="milestone-ask-btn">اسأل رفيق 💬</button>
+          </div>
+        </div>
+
+        <!-- Toolbar: Filters & Live Search -->
+        <div class="calendar-toolbar">
+          <div class="filter-group">
+            <button class="filter-tab active" data-category="all">الكل (28)</button>
+            <button class="filter-tab" data-category="reg">التسجيل والسحب</button>
+            <button class="filter-tab" data-category="exam">الامتحانات والعلامات</button>
+            <button class="filter-tab" data-category="holiday">العطل والإجازات</button>
+            <button class="filter-tab" data-category="academic">المسيرة الأكاديمية</button>
+          </div>
+
+          <div class="cal-search-box">
+            <svg viewBox="0 0 24 24" class="cal-search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input type="text" id="cal-search-input" placeholder="ابحث عن موعد (امتحانات، سحب وإضافة، عطلة...)...">
+          </div>
+        </div>
+
+        <!-- Full Schedule Table -->
+        <div class="calendar-table-container">
+          <table class="calendar-table" id="calendar-main-table">
+            <thead>
+              <tr>
+                <th style="width: 130px;">التاريخ</th>
+                <th style="width: 110px;">اليوم</th>
+                <th>الموعد / الحدث الأكاديمي</th>
+                <th style="width: 140px;">التصنيف</th>
+                <th style="width: 110px;">استفسار</th>
+              </tr>
+            </thead>
+            <tbody id="calendar-table-body">
+              <!-- Row 1 -->
+              <tr data-cat="reg">
+                <td><span class="cal-date-badge">1-10-2026</span></td>
+                <td><span class="cal-day">الخميس</span></td>
+                <td class="cal-event-text">آخر موعد للمحاسبة على المواد المسجلة بدون غرامة، قبل إلغائها لعدم المحاسبة</td>
+                <td><span class="cal-tag tag-reg">تسديد الرسوم</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى آخر موعد للمحاسبة على المواد المسجلة بدون غرامة؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 2 -->
+              <tr data-cat="exam">
+                <td><span class="cal-date-badge">1-10-2026</span></td>
+                <td><span class="cal-day">الخميس</span></td>
+                <td class="cal-event-text">آخر موعد لتقديم طلب مراجعة علامة الامتحان النهائي لمواد الفصل الصيفي 2025/2026</td>
+                <td><span class="cal-tag tag-exam">مراجعة علامات</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى آخر موعد لمراجعة علامات الامتحان النهائي للفصل الصيفي؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 3 -->
+              <tr data-cat="academic">
+                <td><span class="cal-date-badge">4-10-2026</span></td>
+                <td><span class="cal-day">الأحد</span></td>
+                <td class="cal-event-text">بدء العام الجامعي 2026/2027 ودوام أعضاء الهيئة التدريسية</td>
+                <td><span class="cal-tag tag-academic">بدء العام الجامعي</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى بدء العام الجامعي 2026/2027 ودوام الهيئة التدريسية؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 4 -->
+              <tr data-cat="reg" class="highlight-row">
+                <td><span class="cal-date-badge font-bold">4-8-10-2026</span></td>
+                <td><span class="cal-day">الأحد — الخميس</span></td>
+                <td class="cal-event-text font-bold">🌟 فترة السحب والإضافة لمواد الفصل الأول 2026/2027</td>
+                <td><span class="cal-tag tag-reg">سحب وإضافة</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى فترة السحب والإضافة للفصل الحالي وكيف أعدل جدولي؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 5 -->
+              <tr data-cat="exam">
+                <td><span class="cal-date-badge">8-10-2026</span></td>
+                <td><span class="cal-day">الخميس</span></td>
+                <td class="cal-event-text">آخر موعد لتقديم طلب التقدم للامتحان المئوي لمواد الفصل الصيفي 2025/2026 إلكترونياً</td>
+                <td><span class="cal-tag tag-exam">امتحان مئوي</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى آخر موعد لتقديم طلب الامتحان المئوي؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 6 -->
+              <tr data-cat="exam">
+                <td><span class="cal-date-badge">8-10-2026</span></td>
+                <td><span class="cal-day">الخميس</span></td>
+                <td class="cal-event-text">آخر موعد لتقديم واعتماد أعذار التغيب عن الامتحانات النهائية لمواد الفصل الصيفي 2025/2026 إلكترونياً</td>
+                <td><span class="cal-tag tag-exam">أعذار الامتحانات</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى آخر موعد لتقديم أعذار التغيب عن الامتحانات النهائية؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 7 -->
+              <tr data-cat="academic" class="highlight-row">
+                <td><span class="cal-date-badge font-bold">11-10-2026</span></td>
+                <td><span class="cal-day">الأحد</span></td>
+                <td class="cal-event-text font-bold">🎓 بدء التدريس في الفصل الدراسي الأول 2026/2027</td>
+                <td><span class="cal-tag tag-academic">بدء التدريس</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى بدء التدريس في الفصل الأول؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 8 -->
+              <tr data-cat="academic">
+                <td><span class="cal-date-badge">11-15-10-2026</span></td>
+                <td><span class="cal-day">الأحد — الخميس</span></td>
+                <td class="cal-event-text">أسبوع الإكتمال</td>
+                <td><span class="cal-tag tag-academic">أسبوع الإكتمال</span></td>
+                <td><button class="cal-ask-btn" data-prompt="ما هو موعد أسبوع الإكتمال في التقويم؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 9 -->
+              <tr data-cat="academic">
+                <td><span class="cal-date-badge">19-10-2026</span></td>
+                <td><span class="cal-day">الاثنين</span></td>
+                <td class="cal-event-text">آخر موعد لتسليم نتائج مراجعة علامة الامتحان النهائي لمواد الفصل الصيفي 2025/2026 إلى وحدة القبول والتسجيل</td>
+                <td><span class="cal-tag tag-academic">تدقيق نتائج</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى تسليم نتائج مراجعة علامات الصيفي للتسجيل؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 10 -->
+              <tr data-cat="academic">
+                <td><span class="cal-date-badge">19-10-2026</span></td>
+                <td><span class="cal-day">الاثنين</span></td>
+                <td class="cal-event-text">آخر موعد لاعتماد نتائج الامتحانات المئوية وترحيلها إلى وحدة القبول والتسجيل إلكترونياً</td>
+                <td><span class="cal-tag tag-academic">ترحيل نتائج</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى موعد اعتماد نتائج الامتحانات المئوية؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 11 -->
+              <tr data-cat="academic">
+                <td><span class="cal-date-badge">19-10-2026</span></td>
+                <td><span class="cal-day">الاثنين</span></td>
+                <td class="cal-event-text">آخر موعد لاعتماد نتائج الامتحانات التكميلية لمواد الفصل الصيفي 2025/2026 وترحيلها إلى وحدة القبول والتسجيل إلكترونياً</td>
+                <td><span class="cal-tag tag-academic">امتحانات تكميلية</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى موعد اعتماد نتائج الامتحانات التكميلية للصيفي؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 12 -->
+              <tr data-cat="exam" class="highlight-row">
+                <td><span class="cal-date-badge font-bold">29-11-2026 إلى 10-12-2026</span></td>
+                <td><span class="cal-day">الأحد — الخميس</span></td>
+                <td class="cal-event-text font-bold">📝 امتحانات منتصف الفصل الأول 2026/2027 (Midterms)</td>
+                <td><span class="cal-tag tag-exam">امتحانات منتصف الفصل</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى مواعيد امتحانات منتصف الفصل الأول الميد؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 13 -->
+              <tr data-cat="reg">
+                <td><span class="cal-date-badge">13-12-2026 إلى 24-12-2026</span></td>
+                <td><span class="cal-day">الأحد — الخميس</span></td>
+                <td class="cal-event-text">فترة التسجيل على مواد الفصل الدراسي الثاني 2026/2027</td>
+                <td><span class="cal-tag tag-reg">تسجيل الفصل الثاني</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى موعد التسجيل لمواد الفصل الدراسي الثاني؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 14 -->
+              <tr data-cat="holiday">
+                <td><span class="cal-date-badge">25-12-2026</span></td>
+                <td><span class="cal-day">الجمعة</span></td>
+                <td class="cal-event-text">🎄 عطلة عيد الميلاد المجيد</td>
+                <td><span class="cal-tag tag-holiday">عطلة رسمية</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى عطلة عيد الميلاد المجيد بالجامعة؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 15 -->
+              <tr data-cat="holiday">
+                <td><span class="cal-date-badge">1-1-2027</span></td>
+                <td><span class="cal-day">الجمعة</span></td>
+                <td class="cal-event-text">🎉 عطلة رأس السنة الميلادية</td>
+                <td><span class="cal-tag tag-holiday">عطلة رسمية</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى عطلة رأس السنة الميلادية؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 16 -->
+              <tr data-cat="reg">
+                <td><span class="cal-date-badge">3-1-2027 إلى 3-2-2027</span></td>
+                <td><span class="cal-day">الأحد — الأربعاء</span></td>
+                <td class="cal-event-text">فترة تقديم طلبات الانتقال من تخصص لآخر داخل الجامعة إلكترونياً</td>
+                <td><span class="cal-tag tag-reg">انتقال تخصصات</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى فترة تقديم طلبات الانتقال من تخصص لآخر؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 17 -->
+              <tr data-cat="academic" class="highlight-row">
+                <td><span class="cal-date-badge font-bold">13-1-2027</span></td>
+                <td><span class="cal-day">الأربعاء</span></td>
+                <td class="cal-event-text font-bold">📌 آخر يوم للتدريس في الفصل الأول 2026/2027</td>
+                <td><span class="cal-tag tag-academic">نهاية التدريس</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى آخر يوم للتدريس في الفصل الأول؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 18 -->
+              <tr data-cat="academic">
+                <td><span class="cal-date-badge">13-1-2027</span></td>
+                <td><span class="cal-day">الأربعاء</span></td>
+                <td class="cal-event-text">آخر موعد لتسليم قوائم الحرمان إلى وحدة القبول والتسجيل</td>
+                <td><span class="cal-tag tag-academic">قوائم الحرمان</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى آخر موعد لتسليم قوائم الحرمان للتسجيل؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 19 -->
+              <tr data-cat="academic">
+                <td><span class="cal-date-badge">13-1-2027</span></td>
+                <td><span class="cal-day">الأربعاء</span></td>
+                <td class="cal-event-text">آخر موعد لاعتماد علامات الأعمال الفصلية وإعلانها للطلبة</td>
+                <td><span class="cal-tag tag-academic">علامات الفصل</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى آخر موعد لاعتماد علامات الأعمال الفصلية؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 20 -->
+              <tr data-cat="reg">
+                <td><span class="cal-date-badge">14-1-2027</span></td>
+                <td><span class="cal-day">الخميس</span></td>
+                <td class="cal-event-text">آخر موعد للانسحاب من دراسة المواد أو من الفصل الأول</td>
+                <td><span class="cal-tag tag-reg">انسحاب من المواد</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى آخر موعد للانسحاب من دراسة مادة أو من الفصل؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 21 -->
+              <tr data-cat="reg">
+                <td><span class="cal-date-badge">14-1-2027</span></td>
+                <td><span class="cal-day">الخميس</span></td>
+                <td class="cal-event-text">آخر موعد للانسحاب من الجامعة لطلبة البكالوريوس المسجلين في الفصل الحالي</td>
+                <td><span class="cal-tag tag-reg">انسحاب من الجامعة</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى آخر موعد للانسحاب من الجامعة لطلبة البكالوريوس؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 22 -->
+              <tr data-cat="exam" class="highlight-row">
+                <td><span class="cal-date-badge font-bold">17-1-2027 إلى 28-1-2027</span></td>
+                <td><span class="cal-day">الأحد — الخميس</span></td>
+                <td class="cal-event-text font-bold">🧑‍🎓 الامتحانات النهائية للفصل الأول 2026/2027</td>
+                <td><span class="cal-tag tag-exam">امتحانات نهائية</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى موعد الامتحانات النهائية للفصل الأول؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 23 -->
+              <tr data-cat="holiday" class="highlight-row">
+                <td><span class="cal-date-badge font-bold">31-1-2027 إلى 11-2-2027</span></td>
+                <td><span class="cal-day">الأحد — الخميس</span></td>
+                <td class="cal-event-text font-bold">🌴 إجازة ما بين الفصلين للطلبة</td>
+                <td><span class="cal-tag tag-holiday">إجازة بين الفصلين</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى إجازة ما بين الفصلين للطلبة؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 24 -->
+              <tr data-cat="academic">
+                <td><span class="cal-date-badge">31-1-2027</span></td>
+                <td><span class="cal-day">الأحد</span></td>
+                <td class="cal-event-text">آخر موعد لتسليم عضو هيئة التدريس نتائج الامتحانات إلى الكلية (الساعة 1:00 ظهراً)</td>
+                <td><span class="cal-tag tag-academic">تسليم العلامات</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى موعد تسليم نتائج الامتحانات النهائية إلى الكلية؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 25 -->
+              <tr data-cat="academic">
+                <td><span class="cal-date-badge">1-2-2027</span></td>
+                <td><span class="cal-day">الاثنين</span></td>
+                <td class="cal-event-text">آخر موعد لتسليم نتائج امتحانات الفصل الأول 2026/2027 إلى وحدة القبول والتسجيل (الساعة 1:00 ظهراً)</td>
+                <td><span class="cal-tag tag-academic">تسليم للتسجيل</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى آخر موعد لتسليم نتائج الامتحانات لوحدة القبول والتسجيل؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 26 -->
+              <tr data-cat="academic">
+                <td><span class="cal-date-badge">1-2-2027</span></td>
+                <td><span class="cal-day">الاثنين</span></td>
+                <td class="cal-event-text">آخر موعد لتقديم تنسيب مجالس الكليات بمنح الدرجات العلمية والشهادات إلى مجلس العمداء</td>
+                <td><span class="cal-tag tag-academic">تنسيب درجات</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى موعد تنسيب مجالس الكليات بمنح الدرجات العلمية؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 27 -->
+              <tr data-cat="holiday">
+                <td><span class="cal-date-badge">2-2-2027</span></td>
+                <td><span class="cal-day">الثلاثاء</span></td>
+                <td class="cal-event-text">بدء الإجازة السنوية لمدة أسبوع لأعضاء الهيئة التدريسية</td>
+                <td><span class="cal-tag tag-holiday">إجازة تدريسية</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى تبدأ الإجازة السنوية لأعضاء الهيئة التدريسية؟">اسأل رفيق 💬</button></td>
+              </tr>
+
+              <!-- Row 28 -->
+              <tr data-cat="academic" class="highlight-row">
+                <td><span class="cal-date-badge font-bold">3-2-2027</span></td>
+                <td><span class="cal-day">الأربعاء</span></td>
+                <td class="cal-event-text font-bold">🎓 قرار مجلس العمداء بمنح الدرجات العلمية والشهادات</td>
+                <td><span class="cal-tag tag-academic">قرار العمداء وتخريج</span></td>
+                <td><button class="cal-ask-btn" data-prompt="متى موعد صدور قرار مجلس العمداء بمنح الدرجات العلمية والشهادات؟">اسأل رفيق 💬</button></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
