@@ -285,7 +285,7 @@ def health():
         "gemini_online": gemini_client is not None
     }
 
-# 3. Gradio Interface (Mounted on root '/' to keep Hugging Face Space running and active)
+# 3. Clean Gradio Interface (No caching subprocess, preventing port 7860 collisions)
 def gradio_chat(user_message, history):
     res = answer_student_query(user_message, language="ar")
     bot_reply = res["reply"]
@@ -300,23 +300,39 @@ with gr.Blocks(title="Rafeeq - UJ Aqaba Academic Assistant") as demo:
     خادم الـ API يعمل بنجاح وجاهز لاستقبال طلبات الواجهة الأمامية عبر:
     `POST /api/chat`
     """)
-    gr.ChatInterface(
-        fn=gradio_chat,
-        title="تجربة تفاعلية مباشرة مع رفيق",
-        description="يمكنك اختبار إجابات رفيق الأكاديمية والأنظمة والعمداء والتقويم الجامعي مباشرة من هنا.",
-        examples=[
-            "من عميد كلية نظم وتكنولوجيا المعلومات؟",
-            "ما هو التقويم الأكاديمي ومواعيد السحب والإضافة؟",
-            "شو رابط بوابة التسجيل الذاتي للطلاب؟",
-            "كيف اقدم شكوى او اقتراح؟",
-            "مرحبا كيفك"
-        ]
+    chatbot = gr.Chatbot(label="محادثة رفيق الأكاديمي", height=420)
+    msg = gr.Textbox(label="اكتب استفسارك الأكاديمي هنا:", placeholder="اسأل عن الكليات، العمداء، التقويم الجامعي، بوابة التسجيل الذاتي...")
+    with gr.Row():
+        send_btn = gr.Button("إرسال", variant="primary")
+        clear_btn = gr.Button("مسح")
+
+    def user_fn(user_message, history):
+        if not user_message or not user_message.strip():
+            return "", history or []
+        history = history or []
+        history.append((user_message, None))
+        return "", history
+
+    def bot_fn(history):
+        if not history:
+            return history
+        user_message = history[-1][0]
+        bot_reply = gradio_chat(user_message, history)
+        history[-1] = (user_message, bot_reply)
+        return history
+
+    msg.submit(user_fn, [msg, chatbot], [msg, chatbot], queue=False).then(
+        bot_fn, chatbot, chatbot
     )
+    send_btn.click(user_fn, [msg, chatbot], [msg, chatbot], queue=False).then(
+        bot_fn, chatbot, chatbot
+    )
+    clear_btn.click(lambda: None, None, chatbot, queue=False)
 
 # Mount Gradio app into FastAPI
 app = gr.mount_gradio_app(app, demo, path="/")
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=7860)
-
+    port = int(os.environ.get("PORT", 7860))
+    uvicorn.run(app, host="0.0.0.0", port=port)
