@@ -48,8 +48,8 @@ class Settings(BaseSettings):
     GRADUATE_STUDIES_URL: str = "https://graduatedstudies.ju.edu.jo/Home.aspx"
     ACADEMICS_FACULTIES_URL: str = "https://aqaba.ju.edu.jo/ar/arabic/Pages/Academics.aspx"
     ADMINISTRATIVE_SERVICES_URL: str = "https://aqaba.ju.edu.jo/ar/arabic/Pages/Administrative.aspx"
-    SELF_REGISTRATION_APP_URL: str = "https://ujapps.ju.edu.jo/selfregappaq/home.xhtml"
-    SELF_REGISTRATION_AQABA_URL: str = "https://ujapps.ju.edu.jo/selfregappaq/home.xhtml"
+    SELF_REGISTRATION_APP_URL: str = "https://ujapps.ju.edu.jo/selfregappaq/"
+    SELF_REGISTRATION_AQABA_URL: str = "https://ujapps.ju.edu.jo/selfregappaq/"
 
     ELEARNING_PORTAL_URL: str = "https://elearning.ju.edu.jo/"
     YEARBOOK_URL: str = "https://aqaba.ju.edu.jo/ar/arabic/Lists/Yearbook/yearbook.aspx"
