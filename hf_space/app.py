@@ -3,7 +3,7 @@ import sys
 import uuid
 from typing import Optional, Dict, Any, List, Tuple
 from pydantic import BaseModel
-from fastapi import FastAPI, Body
+from fastapi import Body
 from fastapi.middleware.cors import CORSMiddleware
 import gradio as gr
 
@@ -239,53 +239,7 @@ def answer_student_query(message: str, language: str = "ar") -> Dict[str, Any]:
     reply = "عذراً منك، أنا مساعدك الأكاديمي 'رفيق' المخصص حصرياً للاستفسارات المتعلقة بالجامعة الأردنية (فرع العقبة). يسعدني جداً مساعدتك في أي سؤال يخص تخصصات الجامعة، مرافقها، أو خدماتها الطلابية!" if language == "ar" else "I apologize, but I am 'Rafeeq', your academic assistant dedicated exclusively to inquiries regarding the University of Jordan (Aqaba Branch)."
     return {"reply": reply, "source_url": None, "sources": []}
 
-# 2. FastAPI Application Configuration
-app = FastAPI(
-    title="Rafeeq Academic Assistant API - UJ Aqaba",
-    description="Official API backend for Rafeeq (رفيق) - University of Jordan, Aqaba Branch",
-    version="2.0.0"
-)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-class ChatRequest(BaseModel):
-    message: Optional[str] = None
-    prompt: Optional[str] = None
-    session_id: Optional[str] = None
-    language: Optional[str] = "ar"
-    lang: Optional[str] = None
-
-@app.post("/api/chat")
-async def chat_api(req: ChatRequest = Body(...)):
-    user_msg = req.message or req.prompt or ""
-    user_lang = req.language or req.lang or "ar"
-    session_id = req.session_id or str(uuid.uuid4())
-
-    result = answer_student_query(user_msg, language=user_lang)
-
-    return {
-        "reply": result["reply"],
-        "answer": result["reply"],
-        "source_url": result["source_url"],
-        "sources": result["sources"],
-        "session_id": session_id
-    }
-
-@app.get("/health")
-def health():
-    return {
-        "status": "healthy",
-        "service": "Rafeeq Backend API",
-        "gemini_online": gemini_client is not None
-    }
-
-# 3. Clean Gradio Interface (No caching subprocess, preventing port 7860 collisions)
+# 2. Gradio Interface (Native Hugging Face Runner)
 def gradio_chat(user_message, history):
     res = answer_student_query(user_message, language="ar")
     bot_reply = res["reply"]
@@ -329,10 +283,46 @@ with gr.Blocks(title="Rafeeq - UJ Aqaba Academic Assistant") as demo:
     )
     clear_btn.click(lambda: None, None, chatbot, queue=False)
 
-# Mount Gradio app into FastAPI
-app = gr.mount_gradio_app(app, demo, path="/")
+# 3. Register Custom FastAPI Endpoints Directly on demo.app with Full CORS
+demo.app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
+class ChatRequest(BaseModel):
+    message: Optional[str] = None
+    prompt: Optional[str] = None
+    session_id: Optional[str] = None
+    language: Optional[str] = "ar"
+    lang: Optional[str] = None
+
+@demo.app.post("/api/chat")
+async def chat_api(req: ChatRequest = Body(...)):
+    user_msg = req.message or req.prompt or ""
+    user_lang = req.language or req.lang or "ar"
+    session_id = req.session_id or str(uuid.uuid4())
+
+    result = answer_student_query(user_msg, language=user_lang)
+
+    return {
+        "reply": result["reply"],
+        "answer": result["reply"],
+        "source_url": result["source_url"],
+        "sources": result["sources"],
+        "session_id": session_id
+    }
+
+@demo.app.get("/health")
+def health():
+    return {
+        "status": "healthy",
+        "service": "Rafeeq Backend API",
+        "gemini_online": gemini_client is not None
+    }
+
+# 4. Standard Native Gradio Launch (Hugging Face Spaces Native Architecture)
 if __name__ == "__main__":
-    import uvicorn
-    port = int(os.environ.get("PORT", 7860))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    demo.launch(server_name="0.0.0.0", server_port=7860)
