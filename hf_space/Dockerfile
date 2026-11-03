@@ -1,17 +1,20 @@
 FROM python:3.10-slim
 
-WORKDIR /app
+# Create a non-root user (required by Hugging Face Spaces Docker guidelines)
+RUN useradd -m -u 1000 user
+USER user
+ENV HOME=/home/user \
+    PATH=/home/user/.local/bin:$PATH
 
-# Prevent Python from writing .pyc files & buffer stdout/stderr
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+WORKDIR $HOME/app
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Install dependencies into user directory
+COPY --chown=user requirements.txt $HOME/app/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-COPY . .
+# Copy application files
+COPY --chown=user . $HOME/app
 
 EXPOSE 7860
 
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
-
