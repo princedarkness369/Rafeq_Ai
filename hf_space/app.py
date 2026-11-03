@@ -1,5 +1,7 @@
 import os
 import sys
+import json
+import urllib.request
 import uuid
 from typing import Optional, Dict, Any, List, Tuple
 from pydantic import BaseModel
@@ -15,27 +17,28 @@ if sys.platform == "win32":
     except Exception:
         pass
 
-# 1. Google Gemini GenAI Client Initialization
-try:
-    from google import genai
-    from google.genai import types
-    GENAI_AVAILABLE = True
-except ImportError:
-    GENAI_AVAILABLE = False
-    types = None
-
-api_key = os.getenv("GEMINI_API_KEY", "")
-gemini_client = None
-
-if api_key and GENAI_AVAILABLE:
+# 1. Native Gemini API Caller (Zero external dependencies to prevent build/version conflicts)
+def generate_gemini_reply(prompt: str) -> Optional[str]:
+    api_key = os.getenv("GEMINI_API_KEY", "")
+    if not api_key:
+        return None
     try:
-        if api_key.startswith("AQ."):
-            gemini_client = genai.Client(vertexai=True, api_key=api_key)
-        else:
-            gemini_client = genai.Client(api_key=api_key)
-        print("[HuggingFace Space] Gemini client successfully initialized.")
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
+        headers = {"Content-Type": "application/json"}
+        payload = json.dumps({
+            "contents": [{"parts": [{"text": prompt}]}],
+            "generationConfig": {"temperature": 0.2, "maxOutputTokens": 800}
+        }).encode("utf-8")
+        req = urllib.request.Request(url, data=payload, headers=headers)
+        with urllib.request.urlopen(req, timeout=12) as response:
+            res_data = json.loads(response.read().decode("utf-8"))
+            if "candidates" in res_data and len(res_data["candidates"]) > 0:
+                parts = res_data["candidates"][0].get("content", {}).get("parts", [])
+                if parts:
+                    return parts[0].get("text", "").strip()
     except Exception as e:
-        print(f"[HuggingFace Space Error] Gemini init error: {e}")
+        print(f"[Gemini REST API Error] {e}")
+    return None
 
 SYSTEM_PROMPT = """# Role & Identity
 You are "Rafeeq" (رفيق), the official academic and institutional AI assistant for the University of Jordan - Aqaba Branch (الجامعة الأردنية - فرع العقبة). Your primary purpose is to assist students, prospective applicants, and visitors with accurate information regarding the university, its faculties, academic programs, campus facilities, student services, and academic guidelines.
@@ -215,20 +218,12 @@ def answer_student_query(message: str, language: str = "ar") -> Dict[str, Any]:
         return {"reply": base_ans, "source_url": base_source, "sources": [{"title": "بوابة الجامعة الرسمية", "url": base_source}] if base_source else []}
 
     # Intent 5: Gemini AI Generation
-    if gemini_client:
-        try:
-            full_prompt = SYSTEM_PROMPT.format(language="ar" if language == "ar" else "en", question=message)
-            response = gemini_client.models.generate_content(
-                model="gemini-2.0-flash",
-                contents=full_prompt
-            )
-            if response and response.text:
-                rep = response.text.strip()
-                is_refusal = any(p in rep for p in ["عذراً منك، أنا مساعدك الأكاديمي", "I apologize, but I am 'Rafeeq'"])
-                source_url = None if is_refusal else "https://aqaba.ju.edu.jo"
-                return {"reply": rep, "source_url": source_url, "sources": [{"title": "بوابة الجامعة الأردنية فرع العقبة", "url": source_url}] if source_url else []}
-        except Exception as e:
-            print(f"[Gemini Exception] {e}")
+    full_prompt = SYSTEM_PROMPT.format(language="ar" if language == "ar" else "en", question=message)
+    ai_reply = generate_gemini_reply(full_prompt)
+    if ai_reply:
+        is_refusal = any(p in ai_reply for p in ["عذراً منك، أنا مساعدك الأكاديمي", "I apologize, but I am 'Rafeeq'"])
+        source_url = None if is_refusal else "https://aqaba.ju.edu.jo"
+        return {"reply": ai_reply, "source_url": source_url, "sources": [{"title": "بوابة الجامعة الأردنية فرع العقبة", "url": source_url}] if source_url else []}
 
     # Fallback ONLY for actual factual university queries
     is_factual_uni = any(k in q_norm for k in ["متى", "اين", "وين", "كم", "شروط", "عميد", "امتحان", "سحب", "اضاف", "تسجيل", "كلية", "دوام"])
@@ -282,7 +277,7 @@ def health():
     return {
         "status": "healthy",
         "service": "Rafeeq Backend API",
-        "gemini_online": gemini_client is not None
+        "gemini_online": bool(os.getenv("GEMINI_API_KEY"))
     }
 
 # 3. Gradio Interface (Mounted onto FastAPI)
